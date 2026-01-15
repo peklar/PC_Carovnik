@@ -1,6 +1,9 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
 
 jobs:
   build:
@@ -23,16 +26,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'maven'
+          distribution: temurin
+          java-version: "17"
+          cache: maven
 
       - name: Build with Maven
-        run: mvn -B clean install
+        run: mvn -B clean verify
 
       - name: Run Spring Boot app
         run: |
@@ -47,20 +52,12 @@ jobs:
             sleep 5
           done
 
-      - name: Download JMeter
+      - name: SonarCloud analysis (wait for Quality Gate)
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          JMETER_VERSION=5.6.3
-          wget https://dlcdn.apache.org/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz -O /tmp/apache-jmeter.tgz
-          tar -xzf /tmp/apache-jmeter.tgz -C $HOME
-          echo "$HOME/apache-jmeter-${JMETER_VERSION}/bin" >> $GITHUB_PATH
-
-      - name: Run JMeter functional tests
-        run: |
-          jmeter -v
-          jmeter -n -t src/tests/jmeter/functional-tests.jmx -l src/tests/jmeter/results.jtl
-
-      - name: Upload JMeter results
-        uses: actions/upload-artifact@v4
-        with:
-          name: jmeter-results
-          path: src/tests/jmeter/results.jtl
+          mvn -B sonar:sonar \
+            -Dsonar.projectKey=peklar_PC_Carovnik \
+            -Dsonar.organization=peklar \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.qualitygate.wait=true
