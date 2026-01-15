@@ -1,0 +1,52 @@
+
+
+.configuration-container {
+    width: 80%; /* Adjust the width as needed */
+    margin: auto;
+  }
+
+  .button {
+    margin: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  select {
+    width: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+  }
+  
+  /* Optional: Add some additional styling for the selected row */
+  tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+
+ 
+
+  .configuration-container input {
+    width: 235px; /* Adjust the width as needed */
+    font-size: 20px; /* Adjust the font size as needed */
+  }
+  
+  body {
+    background-repeat: no-repeat;
+    background-image: url(images/computer.png);
+    background-size: 700px;
+    background-position: right; 
+  }

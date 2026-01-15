@@ -1,0 +1,15 @@
+.parent {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 7% 0;
+}
+
+.parent a {
+  display: flex;
+
+  justify-content: space-evenly;
+  align-items: center;
+  width: 300px;
+  height: 200px;
+}

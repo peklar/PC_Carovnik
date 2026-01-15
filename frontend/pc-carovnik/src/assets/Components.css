@@ -1,0 +1,67 @@
+form {
+  display: block;
+  align-items:normal;
+  margin: 5px;
+}
+.component {
+    border: solid;
+    border-radius: 5px;
+    border-color: gray;
+    border-width: 2px;
+  
+    height: 70px;
+  
+    margin: 10px;
+    padding: 0px;
+  
+    overflow: hidden;
+    text-align: center;
+  }
+  
+ 
+  
+  
+  .componentInfo {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    background-color: white;
+  }
+  
+  .componentInfo p {
+    margin-top: 13px;
+    width: 130px;
+  }
+  
+
+
+
+  .form {
+    margin: 10px;
+    padding: 20px;
+    padding-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    margin-left: 30%;
+  }
+
+.form label {
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col {
+  flex: 1;
+  margin-right: 15px;
+}
+
+
+
