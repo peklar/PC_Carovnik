@@ -52,12 +52,12 @@ jobs:
             sleep 5
           done
 
-      - name: SonarCloud analysis (wait for Quality Gate)
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v3
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          mvn -B sonar:sonar \
-            -Dsonar.projectKey=peklar_PC_Carovnik \
-            -Dsonar.organization=peklar \
-            -Dsonar.host.url=https://sonarcloud.io \
+        with:
+          args: >
+            -Dsonar.projectKey=peklar_PC_Carovnik
+            -Dsonar.organization=peklar
             -Dsonar.qualitygate.wait=true
